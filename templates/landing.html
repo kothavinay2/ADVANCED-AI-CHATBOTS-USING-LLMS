@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant | Next Generation Intelligence</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* Modern Typography */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            /* Professional Muted Color Palette */
+            --bg-page: #f9f7f2;
+            /* Soft warm neutral */
+            --bg-card: #ffffff;
+            --bg-nav: rgba(249, 247, 242, 0.8);
+
+            --text-main: #1a1a1a;
+            /* Dark charcoal */
+            --text-muted: #666666;
+            --text-inverse: #ffffff;
+
+            --accent-sage: #7d8c7c;
+            /* Sage green */
+            --accent-sage-light: #94a393;
+            --accent-clay: #b87a63;
+            /* Muted terracotta */
+            --accent-clay-light: #c98c76;
+
+            --border: #e5e0d5;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --container-width: 1200px;
+
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography Hierarchy */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+        }
+
+        /* Layout Units */
+        .container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--bg-nav);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-sage);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-sage);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            font-size: 1rem;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-sage);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-sage-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(125, 140, 124, 0.3);
+        }
+
+        .btn-outline {
+            border-color: var(--accent-sage);
+            color: var(--accent-sage);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(125, 140, 124, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 100px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(125, 140, 124, 0.1);
+            color: var(--accent-sage);
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            color: var(--text-main);
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--accent-sage);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+            border-color: var(--accent-sage);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(125, 140, 124, 0.1);
+            color: var(--accent-sage);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* How It Works */
+        .steps {
+            background: #f1ede1;
+            /* Slightly darker warm tone */
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 60px;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .step-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-clay);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 15px -3px rgba(184, 122, 99, 0.4);
+        }
+
+        /* CTA Section */
+        .cta-box {
+            background: var(--accent-sage);
+            color: white;
+            padding: 80px 40px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 30px 60px -12px rgba(125, 140, 124, 0.4);
+        }
+
+        .cta-box h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-box .btn-white {
+            background: white;
+            color: var(--accent-sage);
+        }
+
+        .cta-box .btn-white:hover {
+            background: var(--border);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-page);
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            header {
+                height: 70px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 140px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="bi bi-robot"></i>
+                    </div>
+                    <span>AI Assistant</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How it Works</a></li>
+                    <!-- <li><a href="#about">About</a></li> -->
+                </ul>
+                <a href="/chat" class="btn btn-primary">
+                    Get Started <i class="bi bi-arrow-right"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="reveal">
+                    <span class="hero-badge">Next Generation Intelligence</span>
+                    <h1>Unlock Your Potential with Advanced AI Assistance</h1>
+                    <p>Experience a seamless blend of power and simplicity. Our platform provides intuitive,
+                        context-aware AI tools designed for modern workflows.</p>
+                    <div class="hero-cta">
+                        <a href="/chat" class="btn btn-primary">Get Started Now</a>
+                        <a href="#features" class="btn btn-outline">Explore Features</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item reveal">
+                        <h3>10+</h3>
+                        <p>File Formats</p>
+                    </div>
+                    <div class="stat-item reveal">
+                        <h3>24/7</h3>
+                        <p>Availability</p>
+                    </div>
+                    <div class="stat-item reveal">
+                        <h3>100%</h3>
+                        <p>Secure</p>
+                    </div>
+                    <div class="stat-item reveal">
+                        <h3>Free</h3>
+                        <p>Access</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="container text-center">
+                <div class="reveal">
+                    <h2>Powerful Features</h2>
+                    <p>Everything you need to work smarter, all in one place.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"><i class="bi bi-chat-dots"></i></div>
+                        <h3>Intelligent Chat</h3>
+                        <p>Nuanced, context-aware conversations with professional-grade precision.</p>
+                    </div>
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"><i class="bi bi-search"></i></div>
+                        <h3>Visual Analysis</h3>
+                        <p>Process and interpret images with detailed insights and object recognition.</p>
+                    </div>
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"><i class="bi bi-file-earmark-text"></i></div>
+                        <h3>Document Processing</h3>
+                        <p>Extract instantly actionable insights from PDFs, Word docs, and spreadsheets.</p>
+                    </div>
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"><i class="bi bi-code-slash"></i></div>
+                        <h3>Code Generation</h3>
+                        <p>Generate, debug, and document code across all major programming languages.</p>
+                    </div>
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"><i class="bi bi-clock-history"></i></div>
+                        <h3>Persistent History</h3>
+                        <p>Securely store and manage your conversation history across multiple threads.</p>
+                    </div>
+                    <div class="feature-card reveal">
+                        <div class="feature-icon"><i class="bi bi-layers"></i></div>
+                        <h3>Cross-Platform</h3>
+                        <p>A seamless, high-performance experience across desktop, tablet, and mobile.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="section steps">
+            <div class="container text-center">
+                <div class="reveal">
+                    <h2>How It Works</h2>
+                    <p>Three simple steps to supercharge your productivity.</p>
+                </div>
+
+                <div class="steps-grid">
+                    <div class="step-item reveal">
+                        <div class="step-number">1</div>
+                        <h3>Access Platform</h3>
+                        <p>Enter your secure AI workspace instantly with a single click.</p>
+                    </div>
+                    <div class="step-item reveal">
+                        <div class="step-number">2</div>
+                        <h3>Submit Request</h3>
+                        <p>Type your query or upload documents for expert analysis.</p>
+                    </div>
+                    <div class="step-item reveal">
+                        <div class="step-number">3</div>
+                        <h3>Receive Insights</h3>
+                        <p>Get professional-grade responses and actionable recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section">
+            <div class="container">
+                <div class="cta-box reveal">
+                    <h2>Ready to Experience AI?</h2>
+                    <p>Join thousands of professionals leveraging advanced AI tools for enhanced productivity and
+                        clearer insights.</p>
+                    <a href="/chat" class="btn btn-white btn-lg">Launch AI Assistant</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="bi bi-robot"></i>
+                    </div>
+                    <span>AI Assistant</span>
+                </a>
+                <p class="copyright">© 2026 AI Assistant. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for Scroll Reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Navbar Scroll State
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.height = '70px';
+                header.style.boxShadow = 'var(--shadow-md)';
+            } else {
+                header.style.height = '80px';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Smooth Scroll for Anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const target = document.querySelector(targetId);
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Ripple Effect on Buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mousedown', function (e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.width = '100px';
+                ripple.style.height = '100px';
+                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+                ripple.style.pointerEvents = 'none';
+                ripple.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+
+                requestAnimationFrame(() => {
+                    ripple.style.transform = 'translate(-50%, -50%) scale(4)';
+                    ripple.style.opacity = '0';
+                });
+
+                setTimeout(() => ripple.remove(), 500);
+            });
+        });
+    </script>
+</body>
+
+</html>

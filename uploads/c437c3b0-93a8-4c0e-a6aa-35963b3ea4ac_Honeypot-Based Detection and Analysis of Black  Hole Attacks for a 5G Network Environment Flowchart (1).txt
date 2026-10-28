@@ -1,0 +1,109 @@
+
+
+
+1.  Dataset Creation or Collection
+
+    -    5G network attack traffic dataset
+    -   Load the dataset into Python using the pandas library.
+
+2.  Data Loading and Initial Exploration
+
+    -   Import the dataset into Python using pandas.
+    -   Inspect the dataset structure including number of rows, columns, and data types.
+    -   Analyze the distribution of normal nodes and malicious nodes.
+    -   Review feature statistics to understand node communication behavior.
+
+3.  Data Cleaning
+
+    -   Remove duplicate node interaction records.
+    -   Handle missing values.
+    -   Remove unnecessary features that do not contribute to attack detection.
+    -   Ensure all numerical features are properly formatted.
+
+4.  Label Processing
+
+    -   Assign labels representing node behavior.
+    -   Label normal nodes as “Normal”.
+    -   Label malicious nodes performing black hole attacks as “Blackhole”.
+    -   Convert categorical labels into numerical values for machine learning models.
+
+5.  5G Network Node Simulation (Python-Based)
+
+    -   Simulate a 5G network environment using Python libraries.
+    -   Represent devices as nodes and communication links as edges.
+    -   Create sender nodes, receiver nodes, and intermediate routing nodes.
+    -   Simulate packet transmission between nodes.
+
+
+6.  Black Hole Attack Simulation
+
+    -   Introduce malicious nodes within the simulated network.
+    -   Black hole nodes advertise the shortest route to attract data packets.
+    -   Once packets reach these nodes, they drop them instead of forwarding.
+    -   Record abnormal behaviors such as high packet drop rate and suspicious routing replies.
+
+7.  Honeypot Node Deployment
+
+    -   Deploy honeypot nodes within the network simulation.
+    -   Honeypot nodes act as decoy nodes designed to attract malicious activity.
+    -   These nodes monitor interactions from suspicious nodes.
+
+8.  Honeytoken Activity Monitoring
+
+    -   Implement honeytokens such as fake credentials to attract suspicious or malicious nodes in the network.
+    -   Use Wireshark or PyShark to monitor packet-level interactions and detect abnormal access attempts to these decoy resources.
+    -   Extract these interactions and convert them into dataset features for machine learning analysis.
+
+9.  Feature Engineering
+
+    -   Extract useful features that represent node behavior in the network.
+    -   Generate derived metrics from raw simulation data.
+
+10. Train-Test Split
+
+11. Feature Scaling
+	- Apply scaling techniques such as: StandardScaler MinMaxScaler
+
+
+12. Handling Class Imbalance
+	- Apply oversampling techniques such as SMOTE to balance the dataset.
+
+
+13. Model Training
+	- Random Forest
+	- Gradient Boosting
+	- Support Vector Machine
+	- XGBoost
+	- RNN
+	- Ensamble models
+
+
+14. Model Evaluation
+
+	- Evaluation metrics include: Accuracy Precision Recall F1 Score
+
+	- Generate a confusion matrix to analyze detection performance.
+
+15. Save best trained Model
+
+16. Explainable AI (XAI)
+	- LIME and SHAP
+
+
+17. Flask Web Application Development
+
+	-   Develop a Flask-based interface for the detection system.
+	-   Allow users to input node behavior parameters or upload datasets.
+	-   The backend processes inputs and sends them to the trained machine learning model.
+
+18. Prediction and Detection Module
+
+	-   Extract features from user inputs.
+	-   Apply preprocessing and scaling steps.
+	-   Pass processed data into the trained model.
+	-   Output prediction results indicating whether a node is normal or malicious.
+
+
+NOTE:
+=====
+The above Steps/Dataset/Models are not final. We may add or remove some steps/Models based on the performance. The Final Flow will be provoded after the development is done. 

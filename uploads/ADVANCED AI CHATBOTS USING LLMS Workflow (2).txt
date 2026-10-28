@@ -1,0 +1,54 @@
+
+1. User Input
+	- User enters a text query.
+	- Input is submitted from web UI.
+	- Request is sent to backend API.
+
+2. Backend Initialization
+	- FastAPI server runs on localhost.
+	- API receives user request.
+	- Session ID is created or fetched.
+
+3. Input Preprocessing
+	- Text is cleaned.
+	- Extra spaces are removed.
+	- Previous conversation is loaded.
+	- Context is formed.
+
+4. Prompt Construction
+	- System prompt is added.
+	- User query is appended.
+	- Conversation history is included.
+	- Final prompt is generated.
+
+5. Retrieval-Augmented Generation (Optional)
+	- Query is converted to embeddings.
+	- Embedding model used: all-MiniLM-L6-v2.
+	- Similar documents are retrieved.
+	- FAISS vector database is used.
+	- Retrieved text is added to prompt.
+
+6. LLM Invocation
+	- Prompt is sent to ChatGroq API.
+	- Model used: llama-3.1-8b-instant.
+	- Temperature is set to 0.0.
+	- Model generates response.
+
+7. Response Validation
+	- Output is checked for emptiness.
+	- Unsafe content is filtered.
+	- Fallback response is applied if needed.
+
+8. Session Memory Update
+	- User query is stored.
+	- Bot response is stored.
+	- Context is updated for next turn.
+
+9. Response Delivery
+	- Response is converted to JSON.
+	- Data is sent to frontend.
+	- Answer is shown to user.
+
+10. Deployment
+	- Application runs on localhost.
+	- ChatGroq API is the only LLM used.
