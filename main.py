@@ -14,6 +14,7 @@ from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from PIL import Image
 import PyPDF2
 import docx
+import traceback
 
 app = FastAPI()
 
@@ -29,18 +30,42 @@ templates = Jinja2Templates(directory="templates")
 # -----------------------
 # Groq LLM Initialization
 # -----------------------
+from dotenv import load_dotenv
+
+# Load variables from .env
+load_dotenv()
+
+# Read the Groq API key
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+if not GROQ_API_KEY:
+    raise ValueError("GROQ_API_KEY not found. Check your .env file.")
 
 # Text model
+# llm_text = ChatGroq(
+#     model="llama-3.3-70b-versatile",
+#     temperature=0.7,
+#     max_tokens=4096,
+#     groq_api_key=GROQ_API_KEY
+# )
+
+# # Vision model for images
+# llm_vision = ChatGroq(
+#     model="meta-llama/llama-4-scout-17b-16e-instruct",
+#     temperature=0.7,
+#     max_tokens=4096,
+#     groq_api_key=GROQ_API_KEY
+# )
+
 llm_text = ChatGroq(
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-120b",
     temperature=0.7,
     max_tokens=4096,
     groq_api_key=GROQ_API_KEY
 )
 
-# Vision model for images
 llm_vision = ChatGroq(
-    model="meta-llama/llama-4-scout-17b-16e-instruct",
+    model="qwen/qwen3.8-27b",
     temperature=0.7,
     max_tokens=4096,
     groq_api_key=GROQ_API_KEY
@@ -278,6 +303,9 @@ Be concise but thorough. If a user uploads documents, refer to their content. If
         })
         
     except Exception as e:
+        print("\n========== CHAT ERROR ==========")
+        traceback.print_exc()
+        print("================================\n")
         return JSONResponse({
             "success": False,
             "error": str(e),
